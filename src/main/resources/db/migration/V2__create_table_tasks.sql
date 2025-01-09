@@ -1,0 +1,8 @@
+CREATE TABLE tasks(
+    id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(50) NOT NULL UNIQUE,
+    description VARCHAR(200) NOT NULL,
+    priority ENUM('HIGH', 'MEDIUM', 'LOW') NOT NULL,
+    status ENUM('PENDING', 'IN_PROGRESS', 'COMPLETED') NOT NULL,
+    registration_date DATETIME NOT NULL
+);
