@@ -1,6 +1,7 @@
 package com.thialy.task_manager.service.impl;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,7 +35,17 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<Task> getAllTasks() {
-        return taskRepository.findAll().stream().toList();
+        return taskRepository.findAll()
+            .stream()
+            .sorted(Comparator.comparing(task -> {
+                switch (task.getPriority()) {
+                    case HIGH: return 1;
+                    case MEDIUM: return 2;
+                    case LOW: return 3;
+                    default: return 4;
+                }
+            }))
+            .toList();
     }
 
     @Override
